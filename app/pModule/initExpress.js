@@ -20,12 +20,15 @@ let hospitalRouter = require('../routers/hospitalRouter')
 let medicoRouter = require('../routers/medicoRouter');
 let searchRouter = require('../routers/searchRouter');
 let uploarRouter = require('../routers/upload');
+let imageRouter = require('../routers/imagenRouter')
+
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/hospital', hospitalRouter);
 app.use('/medico', medicoRouter);
 app.use('/search', searchRouter);
 app.use('/upload', uploarRouter);
+app.use('/imagen', imageRouter);
 app.use('/', appRouter);
 
 app.listen(PORT, () => {
