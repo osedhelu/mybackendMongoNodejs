@@ -9,7 +9,7 @@ const auth = (req, res, next) => {
     
     jwt.verify(token, SEED, (err,decode)=> {
         if(err){
-            r._401(res, {message: 'token no incorrecto', err})
+            return r._401(res, {message: 'token no incorrecto', err})
         }
         // r._200(res, decode);
         req.userToken = decode.users

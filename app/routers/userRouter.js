@@ -8,13 +8,20 @@ const {auth} = require('../pModule/auth');
 // ?=================================
 // Listar todos los Usuarios
 // ?=================================
-app.get('/', auth ,(req, res) =>{
+app.get('/',(req, res) =>{
+    let desde = req.query.desde || 0;
+    desde = Number(desde);
     UserSchema.find({}, 'name email img role')
+    .skip(desde)
+    .limit(5)
     .exec((err, data)=>{
         if(err) {
             return r._500(res, {Error: 'En el Servidor', err})
         }
-        r._200(res, data);
+        UserSchema.count({}, (err, conteo) => {
+        r._200(res, {data, total:conteo});
+
+        })    
     })
 });
 
